@@ -14,7 +14,7 @@ interface UnsplashApi {
         const val CLIENT_ID = BuildConfig.UNSPLASH_ACCESS_KEY
         const val BASE_URL = "https://api.unsplash.com/"
     }
-    @Headers("Accept-Version:  v1","Authorization: client-ID $CLIENT_ID"
+    @Headers("Accept-Version:  v1","Authorization: Client-ID $CLIENT_ID"
     )
     @GET("search/photos")
     suspend fun searchPhotos(

@@ -12,6 +12,7 @@ import kotlinx.android.parcel.Parcelize
 data class UnsplashPhoto(
     val id: String,
     val description: String?,
+    val user: UnsplashUser,
     val urls: UnsplashPhotoUrls
 ) : Parcelable {
     @Parcelize
