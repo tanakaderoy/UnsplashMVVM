@@ -1,4 +1,4 @@
-package com.tanaka.mazivanhanga.unsplashmvvm
+package com.tanaka.mazivanhanga.unsplashmvvm.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
