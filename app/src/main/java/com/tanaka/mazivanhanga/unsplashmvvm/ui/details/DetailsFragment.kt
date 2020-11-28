@@ -15,7 +15,6 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.tanaka.mazivanhanga.unsplashmvvm.R
 import com.tanaka.mazivanhanga.unsplashmvvm.databinding.FragmentDetailsBinding
-import java.lang.String
 
 
 /**
