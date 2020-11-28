@@ -15,11 +15,21 @@ import com.tanaka.mazivanhanga.unsplashmvvm.models.UnsplashPhoto
 /**
  * Created by Tanaka Mazivanhanga on 11/27/2020
  */
-class UnsplashPhotoAdapter :
+class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<UnsplashPhoto, UnsplashPhotoAdapter.PhotoViewHolder>(diffCallback = PHOTO_COMPARATOR) {
 
-    class PhotoViewHolder(private val binding: ItemUnsplashPhotoBinding) :
+    inner class PhotoViewHolder(private val binding: ItemUnsplashPhotoBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position = position)
+                    item?.let { listener.onClick(it) }
+                }
+            }
+        }
+
         fun bind(item: UnsplashPhoto?) {
             item?.let {
                 binding.apply {
@@ -34,6 +44,10 @@ class UnsplashPhotoAdapter :
             }
         }
 
+    }
+
+    interface OnItemClickListener {
+        fun onClick(photo: UnsplashPhoto)
     }
 
     companion object {

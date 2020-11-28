@@ -8,9 +8,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.tanaka.mazivanhanga.unsplashmvvm.R
 import com.tanaka.mazivanhanga.unsplashmvvm.databinding.FragmentGalleryBinding
+import com.tanaka.mazivanhanga.unsplashmvvm.models.UnsplashPhoto
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -18,15 +20,21 @@ import dagger.hilt.android.AndroidEntryPoint
  * Created by Tanaka Mazivanhanga on 11/27/2020
  */
 @AndroidEntryPoint
-class GalleryFragment : Fragment(R.layout.fragment_gallery) {
+class GalleryFragment : Fragment(R.layout.fragment_gallery),
+    UnsplashPhotoAdapter.OnItemClickListener {
     private val viewModel by viewModels<GalleryViewModel>()
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
+    override fun onClick(photo: UnsplashPhoto) {
+        val action = GalleryFragmentDirections.actionGalleryFragmentToDetailsFragment(photo = photo)
+        findNavController().navigate(action)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentGalleryBinding.bind(view)
-        val adapter = UnsplashPhotoAdapter()
+        val adapter = UnsplashPhotoAdapter(this)
 
         binding.apply {
             recyclerView.setHasFixedSize(true)
